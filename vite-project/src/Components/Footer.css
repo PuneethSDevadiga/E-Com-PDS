@@ -1,0 +1,147 @@
+/* .container-footer{
+    background-color: wheat;
+    padding: 20px;
+    text-align: center;
+    color: #333;
+    clear: both;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+
+}
+.links ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.links li{
+    margin-right: 20px;
+
+}
+.links a{
+    text-decoration: none;
+    color: #333;
+}
+.socials ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.socials li{
+    margin-right: 20px;
+}
+.socials a{
+    color: #333;
+    text-decoration: none;
+}
+
+/* Footer Styles */
+
+/* .container-footer {
+    background-color: #ff7e5f;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .links, .socials {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .links a, .socials a {
+    text-decoration: none;
+    color: #fff;
+    padding: 8px 12px;
+    background-color: #feb47b;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .links a:hover, .socials a:hover {
+    background-color: #ff7e5f;
+  }
+   */ 
+
+   .container-footer {
+    background-color: #d78d70;
+    margin-top: 30px;
+    padding: 40px 80px;
+    color: #f1ff96;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+  }
+  
+  /* Logo and Title */
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .footer-icon {
+    color: #f1ff96;
+  }
+  
+  .footer-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Links and Socials Styling */
+  .links ul,
+  .socials ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .links a,
+  .socials a {
+    text-decoration: none;
+    color: #030303;
+    font-weight: 500;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 6px;
+  }
+  
+  .links a:hover,
+  .socials a:hover {
+    background-color: #f1ff96;
+    color: #d78d70;
+  }
+  
+  /* Responsive Fix */
+  @media (max-width: 768px) {
+    .container-footer {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+  
+    .links ul,
+    .socials ul {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+  

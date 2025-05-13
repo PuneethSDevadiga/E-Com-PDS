@@ -1,0 +1,155 @@
+
+   /* Navbar Styles */
+.container-navbar {
+  width: 100%;
+  background-color: #d78d70;
+  color: #f1ff96;
+  padding: 8px;
+  height:200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+}
+
+.container-navbar:hover {
+  background-color: #fffffd;
+  color: #000000;
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensures link colors match navbar hover state */
+.container-navbar:hover a {
+  color: #000000;
+}
+
+/* Shop Icon and Title */
+.container-navbar > svg {
+  margin-bottom: 10px;
+}
+
+.container-navbar h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: bold;
+  color: inherit;
+}
+
+/* Search Icon */
+.search-icon {
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+/* Search Input */
+.search{
+  position: relative;
+  display: flex;
+  align-items: center;
+  
+}
+.search input {
+  padding: 10px 40px 10px 35px;
+  border: none;
+  border-radius: 8px;
+  height: 30px;
+  font-size: 18px;
+  width: 135px;
+  transition: all 0.3s;
+
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  z-index: 1; /* keep behind icon */
+}
+
+.search input:focus {
+  outline: none;
+    border: 2px solid #ff7e5f;
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.search-icon-inside {
+  position: absolute;
+  left: 10px;
+  font-size: 18px;
+  color: #333;
+  pointer-events: none;
+  z-index: 2; /* ensure icon stays above blur */
+}
+
+/* Nav Links */
+.container-navbar ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.container-navbar li {
+  display: inline;
+}
+
+.container-navbar a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 18px;
+  font-weight: lighter;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.container-navbar a:hover {
+  background-color: #000000;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+.container-navbar a.active {
+  background-color: #595858;
+  color: #fff;
+}
+
+/* Cart Icon Link */
+.cart-icon a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Logout Button */
+.logOut {
+  color: #000000;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: lighter;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.logOut:hover {
+  background-color: #000000;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.logOut:active {
+  background-color: #feb47b;
+  color: #fff;
+}
