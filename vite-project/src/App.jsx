@@ -5,7 +5,7 @@ import Cart from './Pages/Cart';
 import Product from './Pages/Product';
 import PrivateRoute from './Components/PrivateRoute';
 import Signup from './Pages/Signup';
-// import Checkout from './Pages/Checkout';
+import CompletedOrdersPage from './Pages/CompletedOrdersPage';
 
 
 function App() {
@@ -26,9 +26,11 @@ function App() {
           <Cart />
         </PrivateRoute>}/>
 
-        {/* <Route path="/checkout" element={<PrivateRoute>
-          <Checkout />
-        </PrivateRoute>} /> */}
+        <Route path="/orders" element={<PrivateRoute>
+          <CompletedOrdersPage />
+        </PrivateRoute>} />
+
+       
       </Routes>
     </Router>
     </>

@@ -3,17 +3,13 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './Navbar.css';
 import { BiSolidCart } from "react-icons/bi";
-import { IoMdLogOut } from "react-icons/io";
+import { TbLogout } from "react-icons/tb";
 import { FaShop } from "react-icons/fa6";
 import { BsSearch } from "react-icons/bs";
-
-
-
+import { MdOutlineShoppingBag } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
 const logout = async () => {
-
-    
-
     const refreshToken = localStorage.getItem('refreshToken');
     try {
       await axios.post('http://localhost:5000/logout', { token: refreshToken });
@@ -24,9 +20,15 @@ const logout = async () => {
       localStorage.removeItem('refreshToken');
       window.location.href = '/';
     }
-  };
+};
 
 const Navbar = ({searchProducts,setSearchProducts}) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+  };
 
   return (
     <div>
@@ -41,11 +43,10 @@ const Navbar = ({searchProducts,setSearchProducts}) => {
                 <input type="text" placeholder="Search for products"  value={searchProducts} onChange={(e) => setSearchProducts(e.target.value)} />
                 </div>
                 <div className="cart-icon"><Link to='/cart'>Cart <BiSolidCart  size={25}/></Link></div>
-                <div className="logOut" onClick={logout}>LOG OUT <IoMdLogOut size={25}/></div>
+                <div className="orders-icon"><Link to='/orders'>Your Orders <MdOutlineShoppingBag size={25}/></Link></div>
+                <div className="logOut" onClick={handleLogout}>LOG OUT <TbLogout size={25}/></div>
             </ul>
-
         </div>
-
     </div>
   )
 }
@@ -54,4 +55,5 @@ Navbar.propTypes = {
     searchProducts: PropTypes.string.isRequired,
     setSearchProducts:PropTypes.func.isRequired
 }
+
 export default Navbar;  //exporting the component

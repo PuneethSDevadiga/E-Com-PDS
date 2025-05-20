@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Login.css";
+import { FaShop } from "react-icons/fa6";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +28,10 @@ const Login = () => {
 
   return (
     <div className="container-login">
-        <h1>Welcome to login Page </h1>
+      <div className="logo-circle">
+          <FaShop/>
+      </div>
+        <h2 style={{color:'#ff6f4f', fontFamily:'sans-serif'}}>Login to PDS STORE </h2>
       <form onSubmit={handleSubmit}>
         <div className="align-center">
           <input

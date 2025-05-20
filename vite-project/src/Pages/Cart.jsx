@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 import axiosInstance from '../api/axiosInstance';
 import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
 import { FcInTransit } from "react-icons/fc";
-
+import PaymentForm from '../Components/PaymentForm';
 
 const Cart = () => {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [showCheckout, setShowCheckout] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
 
   const fetchCart = async () => {
     try {
@@ -46,6 +49,53 @@ const Cart = () => {
   }, []);
 
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  const handlePaymentComplete = async () => {
+    try {
+      // Create the order first
+      const orderData = {
+        items: cartItems.map(item => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          image: item.image
+        })),
+        total: totalPrice,
+        date: new Date().toISOString()
+      };
+
+      // Create order
+      const orderResponse = await axiosInstance.post('/orders', orderData);
+      
+      if (!orderResponse.data) {
+        throw new Error('Failed to create order');
+      }
+
+      // Clear the cart after successful order creation
+      await axiosInstance.delete('/cart/clear');
+      
+      // Update local state and close all modals
+      setCartItems([]);
+      setShowPayment(false);
+      setShowCheckout(false);
+
+      // Navigate to completed orders page with replace to prevent going back to cart
+      navigate('/orders', { replace: true });
+      
+    } catch (err) {
+      console.error('Payment processing failed:', err);
+      alert('Failed to process payment. Please try again.');
+    }
+  };
+
+  // Cleanup function to close modals when component unmounts
+  useEffect(() => {
+    return () => {
+      setShowPayment(false);
+      setShowCheckout(false);
+    };
+  }, []);
 
   return (
     <>
@@ -86,8 +136,8 @@ const Cart = () => {
             <div className="checkout-modal">
               <button className="close-modal" onClick={() => setShowCheckout(false)}>X</button>
               <div className="head">
-              <h2>  Checkout Summary </h2>
-              <FcInTransit style={{ width: '40px', height: '40px' }}/>
+                <h2>Checkout Summary</h2>
+                <FcInTransit style={{ width: '40px', height: '40px' }}/>
               </div>
               
               <ul className="checkout-items">
@@ -100,10 +150,20 @@ const Cart = () => {
               <h3>Grand Total: ${totalPrice.toFixed(2)}</h3>
               <button className="pay-now" onClick={() => {
                 setShowCheckout(false);
-                // setShowPayment(true);
+                setShowPayment(true);
               }}>Pay Now</button>
             </div>
           </div>
+        )}
+
+        {/* Payment Form Modal */}
+        {showPayment && (
+          <PaymentForm
+            cartItems={cartItems}
+            totalPrice={totalPrice}
+            onClose={() => setShowPayment(false)}
+            onPaymentComplete={handlePaymentComplete}
+          />
         )}
       </div>
       <Footer />

@@ -1,5 +1,4 @@
-
-   /* Navbar Styles */
+/* Navbar Styles */
 .container-navbar {
   width: 100%;
   background-color: #d78d70;
@@ -121,8 +120,9 @@
   color: #fff;
 }
 
-/* Cart Icon Link */
-.cart-icon a {
+/* Cart and Orders Icon Links */
+.cart-icon a,
+.orders-icon a {
   display: flex;
   align-items: center;
   gap: 5px;

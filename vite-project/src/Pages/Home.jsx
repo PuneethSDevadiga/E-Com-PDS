@@ -4,11 +4,13 @@ import axios from "axios";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { Link } from "react-router-dom";
+import Loading from "../Components/Loading";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [searchProducts, setSearchProducts] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [isLoading,setIsLoading]=useState(true);
   // const [selected, setSelected] = useState(null);
 
   useEffect(() => {
@@ -17,6 +19,7 @@ const Home = () => {
         const api = await axios.get("https://fakestoreapi.com/products");
         setProducts(api.data);
         setSearchResults(api.data);
+        setIsLoading(false);
       } catch (error) {
         console.error("error in fetching", error);
       }
@@ -24,12 +27,19 @@ const Home = () => {
     fetchProducts();
   }, []);
 
+
   useEffect(() => {
     const filteredProducts = products.filter((data) =>
       data.title.toLowerCase().includes(searchProducts.toLowerCase())
     );
     setSearchResults(filteredProducts);
   }, [products, searchProducts]);
+
+
+
+  if(isLoading) return <Loading/> 
+
+
   return (
     <>
       <Navbar
