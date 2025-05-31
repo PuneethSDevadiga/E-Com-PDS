@@ -4,6 +4,8 @@ import './Product.css';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import axiosInstance from '../api/axiosInstance';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Product = () => {
   const { id } = useParams();
@@ -38,10 +40,23 @@ const Product = () => {
       };
 
       await axiosInstance.post('/cart', productData);
-      alert(`${product.title} added to cart`);
+      toast.success(`${product.title} added to cart!`, {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
     } catch (err) {
       console.error('Could not add to cart:', err);
-      alert('Could not add to cart');
+      toast.error('Could not add to cart', {
+        position: 'top-center',
+        autoClose: 2000,
+        theme: 'colored',
+      });
     }
   };
 
@@ -50,6 +65,7 @@ const Product = () => {
   return (
     <>
       <Navbar/>
+      <ToastContainer />
       <div className="product-detail">
         <img src={product.image} alt={product.title} className="product-image" style={{ width: '400px', height: '400px' }} />
         <div className="product-info">

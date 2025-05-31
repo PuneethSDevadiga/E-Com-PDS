@@ -1,6 +1,6 @@
 /* Navbar Styles */
 .container-navbar {
-  width: 100%;
+  width: 100vw;
   background-color: #d78d70;
   color: #f1ff96;
   padding: 8px;
@@ -45,27 +45,29 @@
 }
 
 /* Search Input */
-.search{
+.search {
   position: relative;
   display: flex;
   align-items: center;
-  
+  margin-top: 10px;
+  height: 38px;
 }
+
 .search input {
-  padding: 10px 40px 10px 35px;
+  padding: 5px 40px 5px 42px;
   border: none;
   border-radius: 8px;
   height: 30px;
   font-size: 18px;
-  width: 135px;
+  width: 140px;
   transition: all 0.3s;
-
   background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   color: #000000;
   border: 1px solid rgba(255, 255, 255, 0.4);
-  z-index: 1; /* keep behind icon */
+  z-index: 1;
+  box-sizing: border-box;
 }
 
 .search input:focus {
@@ -74,13 +76,16 @@
     width: 250px;
     background-color: rgba(255, 255, 255, 0.3);
 }
+
 .search-icon-inside {
   position: absolute;
-  left: 10px;
-  font-size: 18px;
-  color: #333;
+  left: 16px;
+  top: 30%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  color: #666;
   pointer-events: none;
-  z-index: 2; /* ensure icon stays above blur */
+  z-index: 2;
 }
 
 /* Nav Links */

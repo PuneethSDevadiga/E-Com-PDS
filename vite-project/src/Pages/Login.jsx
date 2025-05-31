@@ -3,7 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import { FaShop } from "react-icons/fa6";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -22,12 +23,22 @@ const Login = () => {
       window.location.href = "/home";
     } catch (err) {
       console.error("Login Error:", err.response?.data?.message || "Login failed");
-      alert("Invalid credentials");
+      toast.error("Invalid credentials", {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+      });
     }
   };
 
   return (
     <div className="container-login">
+      <ToastContainer />
       <div className="logo-circle">
           <FaShop/>
       </div>
@@ -52,7 +63,7 @@ const Login = () => {
         </div>
       </form>
       <div className="signup">
-        <p> Do not have account ? please signup</p>
+        <p> No account ? please signup</p>
         <Link to="/signup">
         <button>Sign Up</button>
       </Link>

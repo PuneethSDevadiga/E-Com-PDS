@@ -109,6 +109,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #666;
+  font-size: 1.05rem;
 }
 
 .signup button{
